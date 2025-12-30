@@ -4,7 +4,7 @@ import './App.css'
 function App() {
 
   const [inputValue, setInputValue] = useState('')
-  //onst [results, setResults] = useState([])  // ← ÉTAT MANQUANT
+  const [results, setResults] = useState<any[]>([]) // ← état pour sto
 
   async function handleClick() {
     //alert(inputValue)
@@ -16,6 +16,7 @@ function App() {
     {
       const data = await response.json()
       console.log("data from the api: ", data)
+      setResults(data)
       
       for (let i = 0; i < data.length; i++)
       {
@@ -28,11 +29,19 @@ function App() {
     } else if (response.status == 404){
       console.error("Erreur API:", response.status)
       alert("Nothing found")
+      setResults([]) // vide les résultats si rien trouvé
     }else if (response.status == 400){
       console.error("Erreur API:", response.status)
       alert("Error Nothing entered")
+      setResults([]) // vide les résultats si rien trouvé
     }
   }
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault(); // bloque le rechargement
+    handleClick()
+  }
+  
   return (
     <>
       <div>
@@ -40,13 +49,28 @@ function App() {
       <h1>Welcome to AppPharma</h1>
         <p>This app permits to search for a brand</p>
       <div id="butInput">
-        <input
-        type='text'
-        placeholder='Enter the name'
-        value= {inputValue}
-        onChange={(e)=> setInputValue(e.target.value)}>
-        </input>
-        <button onClick={handleClick}>Search</button>
+        <form onSubmit={handleSubmit}>
+            <input
+            type='text'
+            placeholder='Enter the name'
+            value= {inputValue}
+            onChange={(e)=> setInputValue(e.target.value)}>
+            </input>
+            <button type="submit">Search</button>
+        </form>
+      </div>
+
+      <div id="result">
+        {results.length > 0 ? (
+          <ul>
+            {results.map((item, index) =>
+            (
+              <li id="megaliste" key={index}> {item.marque} </li>
+            ))}
+          </ul>
+        ):
+        (<p> No results yet </p>)
+        }
       </div>
     </>
   )
