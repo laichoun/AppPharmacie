@@ -69,7 +69,7 @@ input {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: rgb(245, 215, 233);
+    background-color: rgb(241, 232, 237);
   }
   a:hover {
     color: #747bff;
@@ -79,7 +79,8 @@ input {
     box-shadow: 0 2px 2px black;;
   }
   button:hover {
-    border-color: grey;
+    border-color: rgb(100, 100, 100);
+    background-color: rgb(100, 100, 100);
   }
   h1 {
     color: black;

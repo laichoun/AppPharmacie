@@ -28,11 +28,11 @@ function App() {
 
     } else if (response.status == 404){
       console.error("Erreur API:", response.status)
-      alert("Nothing found")
+      //alert("Nothing found")
       setResults([]) // vide les résultats si rien trouvé
     }else if (response.status == 400){
       console.error("Erreur API:", response.status)
-      alert("Error Nothing entered")
+      //alert("Error Nothing entered")
       setResults([]) // vide les résultats si rien trouvé
     }
   }
@@ -65,7 +65,7 @@ function App() {
           <ul>
             {results.map((item, index) =>
             (
-              <li id="megaliste" key={index}> {item.marque} </li>
+              <li id="megaliste" key={index}> {item.molecule} -- <strong> {item.marque}</strong></li>
             ))}
           </ul>
         ):
