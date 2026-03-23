@@ -19,7 +19,7 @@ def create_app():
     # existing code omitted
     CORS(app, origins=["http://localhost:5173"])
 
-    app.config.from_mapping(DATABASE='./instance/pharmaapp.sqlite')
+    app.config.from_mapping(DATABASE='./backend/instance/pharmaapp.sqlite')
 
     from . import db
     db.init_app(app)

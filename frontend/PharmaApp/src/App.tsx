@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import './App.css'
 
+import { type Medication } from './type' 
+
 function App() {
 
   const [inputValue, setInputValue] = useState('')
-  const [results, setResults] = useState<any[]>([]) // ← état pour sto
+  const [results, setResults] = useState<Medication[]>([]) // ← état pour sto
 
   async function handleClick() {
     //alert(inputValue)
@@ -26,11 +28,11 @@ function App() {
         console.log(data[i].marque)
       }
 
-    } else if (response.status == 404){
+    } else if (response.status === 404){
       console.error("Erreur API:", response.status)
       //alert("Nothing found")
       setResults([]) // vide les résultats si rien trouvé
-    }else if (response.status == 400){
+    }else if (response.status === 400){
       console.error("Erreur API:", response.status)
       //alert("Error Nothing entered")
       setResults([]) // vide les résultats si rien trouvé
