@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS medecine;
 
 CREATE TABLE medecine (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  moleculeSearch TEXT NOT NULL,
   molecule TEXT UNIQUE NOT NULL,
-  brand TEXT NOT NULL
+  brand TEXT NOT NULL,
+  moleculeSearch TEXT NOT NULL
 );
